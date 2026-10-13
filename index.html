@@ -1,0 +1,609 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CHECKLIST — DESATIVAÇÃO DO SIGMA TRANSMITTER CLOUD</title>
+
+<!-- Importação da fonte oficial Inter e Montserrat do Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --brand-navy: #0f2b48;
+  --brand-navy-dark: #081a2d;
+  --brand-cyan: #00a3e0;
+  --brand-cyan-light: #e6f6fc;
+  --bg-page: #f4f7f9;
+  --card-bg: #ffffff;
+  --border-color: #e2e8f0;
+  --text-primary: #1e293b;
+  --text-muted: #64748b;
+  --required-red: #ef4444;
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background-color: var(--bg-page);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  color: var(--text-primary);
+  line-height: 1.5;
+}
+
+h1, h2, h3, .card-title, button {
+  font-family: 'Montserrat', 'Inter', sans-serif;
+}
+
+header {
+  background: linear-gradient(135deg, var(--brand-navy) 0%, var(--brand-navy-dark) 100%);
+  color: #fff;
+  padding: 20px;
+  border-bottom: 4px solid var(--brand-cyan);
+}
+header .container {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.header-brand {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.segware-logo-icon {
+  width: 36px;
+  height: 36px;
+  flex: 0 0 36px;
+}
+header h1 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+header .tag {
+  background: rgba(255, 255, 255, 0.15);
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+main { max-width: 1000px; margin: 24px auto; padding: 0 16px 60px; }
+
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 24px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 8px rgba(15, 43, 72, 0.04);
+}
+
+.card-header-flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
+}
+.card-title { font-size: 16px; font-weight: 700; color: var(--brand-navy); margin: 0; }
+
+.grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.field { display: flex; flex-direction: column; gap: 6px; }
+.field.full { grid-column: 1 / -1; }
+
+label { font-size: 13px; font-weight: 600; color: #334155; }
+.req { color: var(--required-red); margin-left: 2px; }
+
+input, select, textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  background: #fff;
+  font-size: 14px;
+  font-family: inherit;
+  color: var(--text-primary);
+}
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: var(--brand-cyan);
+  box-shadow: 0 0 0 3px rgba(0, 163, 224, 0.15);
+}
+textarea { min-height: 68px; resize: vertical; }
+
+.radio-group { display: flex; gap: 20px; margin-top: 4px; }
+.radio-option { display: flex; align-items: center; gap: 8px; cursor: pointer; font-size: 14px; font-weight: 500; }
+
+.progress-box {
+  background: #f8fafc;
+  border: 1px solid var(--border-color);
+  padding: 14px 18px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+.progress-info { display: flex; justify-content: space-between; font-size: 13px; font-weight: 600; margin-bottom: 8px; }
+.progress-bar-bg { height: 8px; background: #e2e8f0; border-radius: 99px; overflow: hidden; }
+.progress-bar-fill { height: 100%; background: var(--brand-cyan); width: 0%; transition: width 0.3s ease; }
+
+.step-item {
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  padding: 16px 20px;
+  margin-bottom: 12px;
+  background: #ffffff;
+}
+.step-header { display: flex; gap: 12px; align-items: flex-start; }
+.step-number {
+  width: 28px; height: 28px; flex: 0 0 28px;
+  border-radius: 6px; background: var(--brand-cyan-light);
+  color: var(--brand-navy); font-weight: 700; font-size: 13px;
+  display: grid; place-items: center;
+}
+.step-title-wrapper { flex: 1; padding-top: 2px; }
+.step-title { font-weight: 600; font-size: 14.5px; }
+.step-fields { display: grid; grid-template-columns: 200px 1fr; gap: 14px; margin: 14px 0 0 40px; }
+
+.status-pill {
+  display: inline-block; padding: 2px 8px; border-radius: 12px;
+  font-size: 11px; font-weight: 700; margin-left: 8px; text-transform: uppercase;
+}
+.status-pill.done { background: #dcfce7; color: #15803d; }
+.status-pill.pending { background: #fef3c7; color: #b45309; }
+.status-pill.na { background: #f1f5f9; color: #475569; }
+
+.summary-box {
+  background: #f8fafc; border-left: 4px solid var(--brand-cyan);
+  padding: 16px; border-radius: 0 8px 8px 0; margin-bottom: 16px;
+}
+.summary-box .title { font-size: 12px; color: var(--text-muted); font-weight: 600; text-transform: uppercase; }
+.summary-box .status { font-size: 16px; font-weight: 700; color: var(--brand-navy); margin-top: 2px; }
+
+.btn-group { display: flex; gap: 10px; flex-wrap: wrap; }
+button {
+  padding: 10px 16px; border-radius: 8px; font-size: 13.5px;
+  font-weight: 600; cursor: pointer; border: none; transition: all 0.2s ease;
+}
+button.primary { background: var(--brand-cyan); color: #fff; }
+button.primary:hover { background: #008bc2; }
+button.secondary { background: #fff; border: 1px solid var(--border-color); color: var(--brand-navy); }
+button.secondary:hover { background: #f8fafc; border-color: var(--brand-navy); }
+button.btn-sm { padding: 6px 12px; font-size: 12px; }
+
+.alert { padding: 12px 16px; border-radius: 8px; font-size: 13px; margin-top: 14px; }
+.alert.warning { background: #fff7ed; color: #c2410c; border: 1px solid #ffedd5; }
+
+.hidden { display: none; }
+
+@media (max-width: 640px) {
+  .grid, .step-fields { grid-template-columns: 1fr; margin-left: 0; }
+  header .container { flex-direction: column; align-items: flex-start; gap: 8px; }
+}
+
+/* Regras de Impressão */
+@media print {
+  .card-result {
+    break-before: page;
+    page-break-before: always;
+  }
+  .btn-group, header .tag, #outputWrap, .hidden-print {
+    display: none !important;
+  }
+  /* Oculta os placeholders não preenchidos na impressão */
+  textarea::placeholder,
+  input::placeholder {
+    color: transparent !important;
+  }
+  textarea:-ms-input-placeholder,
+  input:-ms-input-placeholder {
+    color: transparent !important;
+  }
+  textarea::-ms-input-placeholder,
+  input::-ms-input-placeholder {
+    color: transparent !important;
+  }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <div class="header-brand">
+      <!-- Símbolo Exato da Segware em SVG Vectorial -->
+      <svg class="segware-logo-icon" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M 50,15 L 75,40 C 82,47 82,58 75,65 L 60,80 C 53,87 42,87 35,80 L 25,70 C 21,66 21,60 25,56 L 30,51" stroke="#FFFFFF" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M 50,85 L 25,60 C 18,53 18,42 25,35 L 40,20 C 47,13 58,13 65,20 L 75,30 C 79,34 79,40 75,44 L 70,49" stroke="#FFFFFF" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <h1>CHECKLIST — DESATIVAÇÃO DO SIGMA TRANSMITTER CLOUD</h1>
+    </div>
+    <span class="tag">Suporte Técnico Segware</span>
+  </div>
+</header>
+
+<main>
+  <!-- 01 · Dados da Solicitação -->
+  <div class="card">
+    <div class="card-header-flex">
+      <h2 class="card-title">01 · Dados da solicitação</h2>
+    </div>
+    <div class="grid">
+      <div class="field">
+        <label for="cliente">Cliente <span class="req">*</span></label>
+        <input id="cliente" placeholder="Nome do cliente">
+      </div>
+      <div class="field">
+        <label for="codigo">Código do cliente <span class="req">*</span></label>
+        <input id="codigo" placeholder="Ex.: 1010">
+      </div>
+      <div class="field">
+        <label for="ticket">Ticket Movidesk</label>
+        <input id="ticket" placeholder="Número ou link do ticket">
+      </div>
+      <div class="field">
+        <label for="solicitante">Solicitante <span class="req">*</span></label>
+        <input id="solicitante" placeholder="Nome do solicitante">
+      </div>
+      <div class="field">
+        <label for="data">Data da solicitação <span class="req">*</span></label>
+        <input id="data" type="date">
+      </div>
+      <div class="field">
+        <label for="analista">Analista responsável <span class="req">*</span></label>
+        <input id="analista" placeholder="Nome do analista">
+      </div>
+      <div class="field full">
+        <label>Motivo da desativação <span class="req">*</span></label>
+        <div class="radio-group">
+          <label class="radio-option"><input type="radio" name="motivo" value="Cancelamento"> Cancelamento</label>
+          <label class="radio-option"><input type="radio" name="motivo" value="Inadimplência"> Inadimplência</label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 02 · Checklist de Execução -->
+  <div class="card">
+    <div class="card-header-flex">
+      <h2 class="card-title">02 · Checklist de execução</h2>
+    </div>
+    
+    <div class="progress-box">
+      <div class="progress-info">
+        <span id="progressText">0 de 7 etapas finalizadas</span>
+        <span id="percentText">0%</span>
+      </div>
+      <div class="progress-bar-bg">
+        <div class="progress-bar-fill" id="progressBar"></div>
+      </div>
+    </div>
+
+    <div id="stepsContainer">
+      <div class="step-item">
+        <div class="step-header">
+          <div class="step-number">1</div>
+          <div class="step-title-wrapper"><span class="step-title" id="title0">Confirmar a formalização/autorização da desativação.</span></div>
+        </div>
+        <div class="step-fields">
+          <div class="field"><label for="status0">Status</label><select id="status0" class="step-status"><option value="">Selecione...</option><option>Pendente</option><option>Em andamento</option><option>Concluído</option><option>Não se aplica</option></select></div>
+          <div class="field"><label for="obs0">Observações</label><textarea id="obs0" placeholder="Detalhes ou justificativa"></textarea></div>
+        </div>
+      </div>
+
+      <div class="step-item">
+        <div class="step-header">
+          <div class="step-number">2</div>
+          <div class="step-title-wrapper"><span class="step-title" id="title1">Identificar e validar o cliente e o serviço/servidor correspondente.</span></div>
+        </div>
+        <div class="step-fields">
+          <div class="field"><label for="status1">Status</label><select id="status1" class="step-status"><option value="">Selecione...</option><option>Pendente</option><option>Em andamento</option><option>Concluído</option><option>Não se aplica</option></select></div>
+          <div class="field"><label for="obs1">Observações</label><textarea id="obs1" placeholder="Detalhes ou justificativa"></textarea></div>
+        </div>
+      </div>
+
+      <div class="step-item">
+        <div class="step-header">
+          <div class="step-number">3</div>
+          <div class="step-title-wrapper"><span class="step-title" id="title2">Desativar o serviço do Sigma Transmitter Cloud.</span></div>
+        </div>
+        <div class="step-fields">
+          <div class="field"><label for="status2">Status</label><select id="status2" class="step-status"><option value="">Selecione...</option><option>Pendente</option><option>Em andamento</option><option>Concluído</option><option>Não se aplica</option></select></div>
+          <div class="field"><label for="obs2">Observações</label><textarea id="obs2" placeholder="Detalhes ou justificativa"></textarea></div>
+        </div>
+      </div>
+
+      <div class="step-item">
+        <div class="step-header">
+          <div class="step-number">4</div>
+          <div class="step-title-wrapper"><span class="step-title" id="title3">Desinstalar o serviço do Sigma Transmitter Cloud.</span></div>
+        </div>
+        <div class="step-fields">
+          <div class="field"><label for="status3">Status</label><select id="status3" class="step-status"><option value="">Selecione...</option><option>Pendente</option><option>Em andamento</option><option>Concluído</option><option>Não se aplica</option></select></div>
+          <div class="field"><label for="obs3">Observações</label><textarea id="obs3" placeholder="Detalhes ou justificativa"></textarea></div>
+        </div>
+      </div>
+
+      <div class="step-item">
+        <div class="step-header">
+          <div class="step-number">5</div>
+          <div class="step-title-wrapper"><span class="step-title" id="title4">Renomear a pasta de instalação do Sigma Transmitter do cliente.</span></div>
+        </div>
+        <div class="step-fields">
+          <div class="field"><label for="status4">Status</label><select id="status4" class="step-status"><option value="">Selecione...</option><option>Pendente</option><option>Em andamento</option><option>Concluído</option><option>Não se aplica</option></select></div>
+          <div class="field"><label for="obs4">Observações</label><textarea id="obs4" placeholder="Detalhes ou justificativa"></textarea></div>
+        </div>
+      </div>
+
+      <div class="step-item">
+        <div class="step-header">
+          <div class="step-number">6</div>
+          <div class="step-title-wrapper"><span class="step-title" id="title5">Atualizar status na planilha Clientes AWS Transmitter Cloud.</span></div>
+        </div>
+        <div class="step-fields">
+          <div class="field"><label for="status5">Status</label><select id="status5" class="step-status"><option value="">Selecione...</option><option>Pendente</option><option>Em andamento</option><option>Concluído</option><option>Não se aplica</option></select></div>
+          <div class="field"><label for="obs5">Observações</label><textarea id="obs5" placeholder="Detalhes ou justificativa"></textarea></div>
+        </div>
+      </div>
+
+      <div class="step-item">
+        <div class="step-header">
+          <div class="step-number">7</div>
+          <div class="step-title-wrapper"><span class="step-title" id="title6">Enviar e-mail para a Adentro TI informando a desativação, para liberação das portas utilizadas.</span></div>
+        </div>
+        <div class="step-fields">
+          <div class="field">
+            <label for="status6">Status</label>
+            <select id="status6" class="step-status">
+              <option value="">Selecione...</option>
+              <option>Pendente</option>
+              <option>Em andamento</option>
+              <option>Concluído</option>
+              <option>Não se aplica</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="obs6">Observações</label>
+            <textarea id="obs6" placeholder="Detalhes ou justificativa"></textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 03 · Resultado -->
+  <div class="card card-result">
+    <h2 class="card-title" style="margin-bottom: 18px;">03 · Resultado da operação</h2>
+    
+    <div class="summary-box">
+      <div class="title">Status Geral</div>
+      <div class="status" id="finalStatus">Não iniciado</div>
+      <div style="font-size: 13px; color: var(--text-muted); margin-top: 2px;" id="finalDetail">Selecione o motivo da desativação para começar.</div>
+    </div>
+
+    <div class="field" style="margin-bottom: 20px;">
+      <label for="adicionais">Observações adicionais</label>
+      <textarea id="adicionais" placeholder="Informações complementares sobre a desativação..."></textarea>
+    </div>
+
+    <div id="validationAlert" class="alert warning hidden"></div>
+
+    <div class="btn-group">
+      <button class="primary" id="btnGenerate">Gerar formalização do ticket</button>
+      <button class="secondary" id="btnPrint">Imprimir / PDF</button>
+      <button class="secondary" id="btnReset">Nova solicitação</button>
+    </div>
+
+    <div id="outputWrap" class="hidden hidden-print" style="margin-top: 20px;">
+      <div class="field">
+        <label for="output">Prévia da formalização para o Movidesk</label>
+        <textarea id="output" style="min-height: 250px; font-family: monospace; font-size: 13px;"></textarea>
+      </div>
+      <div class="btn-group" style="margin-top: 10px;">
+        <button class="primary" id="btnCopy">Copiar formalização</button>
+        <button class="secondary" id="btnDownload">Baixar .TXT</button>
+      </div>
+    </div>
+  </div>
+</main>
+
+<script>
+const tasks = [
+  "Confirmar a formalização/autorização da desativação.",
+  "Identificar e validar o cliente e o serviço/servidor correspondente.",
+  "Desativar o serviço do Sigma Transmitter Cloud.",
+  "Desinstalar o serviço do Sigma Transmitter Cloud.",
+  "Renomear a pasta de instalação do Sigma Transmitter do cliente.",
+  "Atualizar status na planilha Clientes AWS Transmitter Cloud.",
+  "Enviar e-mail para a Adentro TI informando a desativação, para liberação das portas utilizadas."
+];
+
+const $ = id => document.getElementById(id);
+const val = id => $(id) ?$(id).value.trim() : '';
+
+function getMotivo() {
+  return document.querySelector('input[name="motivo"]:checked')?.value || '';
+}
+
+function setStatusDefaults(motivo) {
+  tasks.forEach((_, i) => { if ($('status' + i))$('status' + i).value = ''; });
+  if (!motivo) return;
+  
+  tasks.forEach((_, i) => { if ($('status' + i))$('status' + i).value = 'Pendente'; });
+  if (motivo === 'Inadimplência') {
+    [3, 4, 6].forEach(i => { if ($('status' + i))$('status' + i).value = 'Não se aplica'; });
+  }
+  updateSummary();
+  saveDraft();
+}
+
+function updateSummary() {
+  const st = tasks.map((_, i) => $('status' + i) ?$('status' + i).value : '');
+  const closed = st.filter(s => s === 'Concluído' || s === 'Não se aplica').length;
+  
+  if ($('progressText'))$('progressText').textContent = `${closed} de 7 etapas finalizadas`;
+  if ($('percentText'))$('percentText').textContent = Math.round(closed / 7 * 100) + '%';
+  if ($('progressBar'))$('progressBar').style.width = (closed / 7 * 100) + '%';
+
+  let final = 'Não iniciado', detail = 'Selecione o motivo e atualize as etapas.';
+  if (getMotivo()) {
+    if (st.some(s => !s || s === 'Pendente' || s === 'Em andamento')) {
+      final = 'Em andamento — existem etapas pendentes';
+      detail = 'Conclua ou classifique todas as etapas aplicáveis antes de finalizar.';
+    } else {
+      final = 'Concluído e validado';
+      detail = 'Todas as etapas estão concluídas ou marcadas como não aplicáveis.';
+    }
+  }
+
+  if ($('finalStatus'))$('finalStatus').textContent = final;
+  if ($('finalDetail'))$('finalDetail').textContent = detail;
+
+  tasks.forEach((_, i) => {
+    let s = st[i];
+    let tEl = $('title' + i);
+    if (tEl) {
+      let old = tEl.querySelector('.status-pill');
+      if (old) old.remove();
+      if (s) {
+        let badge = document.createElement('span');
+        badge.className = 'status-pill ' + (s === 'Concluído' ? 'done' : s === 'Pendente' ? 'pending' : 'na');
+        badge.textContent = s;
+        tEl.appendChild(badge);
+      }
+    }
+  });
+
+  return { st, final, closed };
+}
+
+function saveDraft() {
+  const data = {
+    cliente: val('cliente'), codigo: val('codigo'), ticket: val('ticket'),
+    solicitante: val('solicitante'), data: val('data'), analista: val('analista'),
+    motivo: getMotivo(), adicionais: val('adicionais'),
+    statuses: tasks.map((_, i) => val('status' + i)),
+    obss: tasks.map((_, i) => val('obs' + i))
+  };
+  localStorage.setItem('sigma_desativacao_rascunho', JSON.stringify(data));
+}
+
+function loadDraft() {
+  const raw = localStorage.getItem('sigma_desativacao_rascunho');
+  if (!raw) return;
+  try {
+    const d = JSON.parse(raw);
+    if (d.cliente) $('cliente').value = d.cliente;
+    if (d.codigo) $('codigo').value = d.codigo;
+    if (d.ticket) $('ticket').value = d.ticket;
+    if (d.solicitante) $('solicitante').value = d.solicitante;
+    if (d.data) $('data').value = d.data;
+    if (d.analista) $('analista').value = d.analista;
+    if (d.adicionais) $('adicionais').value = d.adicionais;
+    if (d.motivo) {
+      const radio = document.querySelector(`input[name="motivo"][value="${d.motivo}"]`);
+      if (radio) radio.checked = true;
+    }
+    if (d.statuses) d.statuses.forEach((s, i) => { if ($('status' + i))$('status' + i).value = s; });
+    if (d.obss) d.obss.forEach((o, i) => { if ($('obs' + i))$('obs' + i).value = o; });
+    updateSummary();
+  } catch (e) {}
+}
+
+function formalize() {
+  const r = {
+    cliente: val('cliente'),
+    codigo: val('codigo'),
+    ticket: val('ticket'),
+    solicitante: val('solicitante'),
+    data: val('data'),
+    analista: val('analista'),
+    motivo: getMotivo(),
+    etapas: tasks.map((t, i) => ({ etapa: t, status: val('status' + i), obs: val('obs' + i) })),
+    statusFinal: updateSummary().final,
+    adicionais: val('adicionais')
+  };
+
+  return `Prezado(a),\n\nA desativação do SIGMA Transmitter Cloud foi realizado, conforme solicitado. Segue o checklist completo da desativação para registro:\n\nCHECKLIST — DESATIVAÇÃO DO SIGMA TRANSMITTER CLOUD\n
+Ticket Movidesk: ${r.ticket || 'Não informado'}
+Cliente: ${r.cliente || 'Não informado'}
+Código do cliente: ${r.codigo || 'Não informado'}
+Solicitante: ${r.solicitante || 'Não informado'}
+Data da solicitação: ${r.data || 'Não informada'}
+Analista responsável: ${r.analista || 'Não informado'}
+Motivo da desativação: ${r.motivo || 'Não informado'}
+
+CHECKLIST DE EXECUÇÃO:
+${r.etapas.map((e, i) => `${i + 1}. ${e.etapa}\n   Status:${e.status || 'Não preenchido'}\n   Obs: ${e.obs || 'Nenhuma'}`).join('\n\n')}
+
+Status Final: ${r.statusFinal}
+Observações Adicionais: ${r.adicionais || 'Nenhuma'}
+
+---
+Registro gerado pelo Checklist de Desativação.`;
+}
+
+function validate() {
+  const reqs = [['cliente', 'Cliente'], ['codigo', 'Código do cliente'], ['solicitante', 'Solicitante'], ['data', 'Data'], ['analista', 'Analista']];
+  const missing = reqs.filter(([id]) => !val(id)).map(([, label]) => label);
+  if (!getMotivo()) missing.push('Motivo da desativação');
+  return missing;
+}
+
+// Event Listeners
+for (let i = 0; i < 7; i++) {
+  if ($('status' + i))$('status' + i).addEventListener('change', () => { updateSummary(); saveDraft(); });
+  if ($('obs' + i))$('obs' + i).addEventListener('input', saveDraft);
+}
+
+document.querySelectorAll('input, textarea').forEach(el => el.addEventListener('input', saveDraft));
+document.querySelectorAll('input[name="motivo"]').forEach(el => {
+  el.addEventListener('change', () => {
+    setStatusDefaults(getMotivo());
+    $('outputWrap').classList.add('hidden');
+  });
+});
+
+$('btnGenerate').addEventListener('click', () => {
+  const m = validate();
+  const alert = $('validationAlert');
+  if (m.length) {
+    alert.textContent = 'Preencha os campos obrigatórios: ' + m.join(', ') + '.';
+    alert.className = 'alert warning';
+    alert.classList.remove('hidden');
+    return;
+  }
+  alert.classList.add('hidden');
+  $('output').value = formalize();$('outputWrap').classList.remove('hidden');
+});
+
+$('btnPrint').addEventListener('click', () => window.print());
+
+$('btnCopy').addEventListener('click', async () => {
+  await navigator.clipboard.writeText($('output').value);$('btnCopy').textContent = 'Copiado!';
+  setTimeout(() => $('btnCopy').textContent = 'Copiar formalização', 1800);
+});
+
+$('btnReset').addEventListener('click', () => {
+  if (!confirm('Deseja limpar todo o formulário e apagar o rascunho salvo?')) return;
+  localStorage.removeItem('sigma_desativacao_rascunho');
+  document.querySelectorAll('input, textarea').forEach(el => {
+    if (el.type === 'radio') el.checked = false;
+    else el.value = '';
+  });
+  tasks.forEach((_, i) => $('status' + i).value = '');$('outputWrap').classList.add('hidden');
+  $('validationAlert').classList.add('hidden');$('data').value = new Date().toISOString().split('T')[0];
+  updateSummary();
+});
+
+// Inicialização
+if (!$('data').value)$('data').value = new Date().toISOString().split('T')[0];
+loadDraft();
+</script>
+</body>
+</html>
